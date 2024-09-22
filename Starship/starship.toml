@@ -1,0 +1,217 @@
+# Get editor completions based on the config schema
+"$schema" = "https://starship.rs/config-schema.json"
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+#[character] # The name of the module we are configuring is "character"
+#success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+#[package]
+#disabled = true
+
+format = """
+[](color_kblue)\
+$os\
+$sudo\
+$username\
+$hostname\
+$localip\
+[](bg:color_dirblue fg:color_kblue)\
+$directory\
+[](fg:color_dirblue bg:color_git)\
+$git_branch\
+$git_status\
+[](fg:color_git bg:color_php)\
+$php\
+[](fg:color_php bg:color_azure)\
+$azure\
+[](fg:color_azure bg:color_python)\
+$python\
+[](fg:color_python bg:color_dock)\
+$docker_context\
+[](fg:color_dock bg:color_aws)\
+$aws\
+[](fg:color_aws bg:color_bg1)\
+$time\
+[ ](fg:color_bg1)\
+$fill\
+[](color_bg1)\
+$memory_usage\
+[](bg:color_bg2 fg:color_bg1)\
+$battery\
+[](bg:color_bg1 fg:color_bg2)\
+$cmd_duration\
+[ ](fg:color_bg1)\
+$line_break$character"""
+
+palette = "gruvbox_dark"
+
+[palettes.gruvbox_dark]
+color_fg0 = "#f0ffff"
+color_fg1 = "#353839"
+color_bg1 = "#3c3836"
+color_bg2 = "#665c54"
+color_green = "#4cbb17"
+color_purple = "#b16286"
+color_red = "#cc241d"
+color_yellow = "#fcc200"
+color_kblue = "#0077C4"
+color_dirblue = "#7cb9e8"
+color_azure = "#007fff"
+color_aws = "#EB5F07"
+color_php = "#3C4771"
+color_python = "#ffd800"
+color_dock = "#328EEF"
+color_git = "#7F44C5"
+
+[os]
+disabled = false
+style = "bg:color_kblue fg:color_fg0"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+#Kubuntu = ""
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[sudo]
+format = "[$symbol]($style)"
+style = "bg:color_kblue fg:color_fg0"
+symbol = " "
+disabled = false
+
+[username]
+show_always = true
+style_user = "bg:color_kblue fg:color_fg0"
+style_root = "bg:color_kblue fg:color_fg0"
+format = "[ $user ]($style)"
+
+[hostname]
+ssh_only = false
+ssh_symbol = "󰇄 "
+format = "[on $ssh_symbol$hostname ]($style)"
+style = "bg:color_kblue fg:color_fg0"
+disabled = false
+
+[localip]
+ssh_only = true
+format = "[@$localipv4 ]($style)"
+style = "bg:color_kblue fg:color_fg0"
+disabled = false
+
+[directory]
+style = "fg:color_fg1 bg:color_dirblue"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+read_only = " "
+read_only_style = "fg:color_fg0 bg:color_dirblue"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bg:color_git"
+format = "[[ $symbol $branch ](fg:color_fg0 bg:color_git)]($style)"
+ignore_branches = ['main']
+disabled = false
+
+[git_status]
+style = "bg:color_git"
+format = "[[($all_status$ahead_behind )](fg:color_fg0 bg:color_git)]($style)"
+disabled = false
+
+[php]
+symbol = ""
+style = "bg:color_php"
+format = "[[ $symbol( $version) ](fg:color_fg0 bg:color_php)]($style)"
+
+[azure]
+disabled = false
+format = "on [$symbol($username@$$subscription)]($style) "
+symbol = "󰠅 "
+style = "fg:color_fg0 bg:color_azure"
+
+[python]
+symbol = ""
+style = "bg:color_python"
+format = "[[ $symbol( $version) ](fg:color_fg1 bg:color_python)]($style)"
+
+[docker_context]
+symbol = ""
+style = "bg:color_dock"
+format = "[[ $symbol( $context) ](fg:color_fg1 bg:color_dock)]($style)"
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:color_bg1"
+format = "[[  $time ](fg:color_fg0 bg:color_bg1)]($style)"
+
+[fill]
+symbol = " "
+
+[memory_usage]
+format = "[ $symbol ${ram} ]($style)"
+disabled = false
+threshold = -1
+symbol = "󰍛"
+style = "fg:color_green bg:color_bg1"
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+threshold = 10
+style = "fg:bold color_red bg:color_bg2"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 30
+style = "fg:bold color_yellow bg:color_bg2"
+
+[[battery.display]]
+threshold = 100
+style = "fg:bold green bg:color_bg2"
+
+[cmd_duration]
+min_time = 1
+format = "[  $duration ](fg:bold color_yellow bg:color_bg1)"
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = "[](bold fg:color_kblue)"
+error_symbol = "[](bold fg:color_red)"
+vimcmd_symbol = "[](bold fg:color_green)"
+vimcmd_replace_one_symbol = "[](bold fg:color_purple)"
+vimcmd_replace_symbol = "[](bold fg:color_purple)"
+vimcmd_visual_symbol = "[](bold fg:color_yellow)"
