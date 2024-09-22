@@ -143,11 +143,11 @@ disabled = false
 
 [git_status]
 style = "bg:color_git"
-format = "[[($all_status$ahead_behind )](fg:color_fg0 bg:color_git)]($style)"
+format = "[ [($all_status$ahead_behind )](fg:color_fg0 bg:color_git)]($style)"
 disabled = false
 
 [php]
-symbol = ""
+symbol = ""
 style = "bg:color_php"
 format = "[[ $symbol( $version) ](fg:color_fg0 bg:color_php)]($style)"
 
@@ -184,9 +184,9 @@ symbol = "󰍛"
 style = "fg:color_green bg:color_bg1"
 
 [battery]
-full_symbol = "🔋"
-charging_symbol = "⚡️"
-discharging_symbol = "💀"
+full_symbol = "󰁹"
+charging_symbol = "󰂄"
+discharging_symbol = "󰁼"
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 threshold = 10
