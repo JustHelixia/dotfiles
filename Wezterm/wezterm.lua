@@ -35,6 +35,8 @@ config.prefer_to_spawn_tabs = true
 config.show_tab_index_in_tab_bar = false
 config.switch_to_last_active_tab_when_closing_tab = true
 config.scrollback_lines = 3000
+config.initial_cols = 100
+config.initial_rows = 30
 
 inactive_pane_hsb = {
     saturation = 0.1,
