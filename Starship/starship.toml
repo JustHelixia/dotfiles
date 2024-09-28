@@ -97,7 +97,7 @@ RedHatEnterprise = "󱄛"
 [sudo]
 format = "[$symbol]($style)"
 style = "bg:color_kblue fg:color_fg0"
-symbol = " "
+symbol = " 󰌋"
 disabled = false
 
 [username]

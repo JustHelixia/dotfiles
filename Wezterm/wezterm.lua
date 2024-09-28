@@ -6,10 +6,12 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 -- This is where you actually apply your config choices
+config.default_prog = { '/usr/bin/zsh', '-l'  }
+
 -- For example, changing the color scheme:
 config.color_scheme = 'Nightfly (Gogh)'
 
--- my coolnight colorscheme:
+-- colorscheme settings:
 config.colors = {
 --	foreground = "#CBE0F0",
 	background = "#011423",
